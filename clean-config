@@ -1,0 +1,70 @@
+#!/bin/bash
+
+delete_directory() {
+  local dir="$1"
+
+  # Resolve tilde expansion if necessary
+  dir="${dir/#\~/$HOME}"
+
+  if [ -d "$dir" ]; then
+    # Check if it is a symbolic link
+    if [ -L "$dir" ]; then
+      echo "$dir is a symbolic link. Unlinking..."
+      # Unlink the symbolic link
+      unlink "$dir"
+      if [ $? -eq 0 ]; then
+        echo "Successfully unlinked $dir."
+      else
+        echo "Failed to unlink $dir."
+      fi
+    else
+      echo "$dir is a regular directory. Deleting..."
+      # Delete the regular directory
+      rm -rf "$dir"
+      if [ $? -eq 0 ]; then
+        echo "Successfully deleted $dir."
+      else
+        echo "Failed to delete $dir."
+      fi
+    fi
+  else
+    echo "$dir does not exist or is not a directory."
+  fi
+}
+
+delete_file() {
+  local file="$1"
+
+  if [ -f "$file" ] || [ -L "$file" ]; then
+    if [ -L "$file" ]; then
+      echo "$file is a symbolic link. Unlinking..."
+      unlink "$file"
+      if [ $? -eq 0 ]; then
+        echo "Successfully unlinked $file."
+      else
+        echo "Failed to unlink $file."
+      fi
+    else
+      echo "$file is a regular file. Deleting..."
+      rm "$file"
+      if [ $? -eq 0 ]; then
+        echo "Successfully deleted $file."
+      else
+        echo "Failed to delete $file."
+      fi
+    fi
+  else
+    echo "$file does not exist."
+  fi
+}
+
+delete_directory "$HOME/.config/nvim"
+delete_directory "$HOME/.local/share/nvim"
+delete_directory "$HOME/.local/state/nvim"
+delete_directory "$HOME/.cache/nvim"
+delete_file "$HOME/.zshrc"
+delete_file "$HOME/.wezterm.lua"
+delete_file "$HOME/.gitconfig"
+delete_directory "$HOME/.config/zsh"
+delete_directory "$HOME/.config/nnn"
+delete_directory "$HOME/.config/zellij"

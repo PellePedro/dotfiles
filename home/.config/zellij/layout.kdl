@@ -1,0 +1,32 @@
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        // pane size=2 borderless=true {
+        //     plugin location="zellij:status-bar"
+        // }
+    }
+    tab name="skyramp dev" cwd="/Users/pedro/go/src/github.com/letsramp/skyramp" focus=true {
+        pane split_direction="vertical" {
+            pane  size="60%" 
+            pane split_direction="horizontal" size="40%" {
+                pane command="make" {
+                    args "all"
+                    start_suspended true
+                }
+                pane command="k9s"
+            }
+        }
+    }
+    tab name="my notes" cwd="/Users/pedro/git/repo/notes" {
+        pane split_direction="horizontal"  {
+            pane
+            pane size="20%"
+        }
+    }
+    tab name="nvim Config" cwd="/Users/pedro/.config/AstroNvim/" {
+        pane
+    }
+}
