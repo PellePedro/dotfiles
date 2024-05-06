@@ -12,13 +12,10 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = {
-      { "\\r", [[<cmd>lua vim.lsp.buf.rename()<cr>]], desc = "LSP Rename" },
-      {
-        "\\2", [[<cmd>:Telescope buffers<CR>]], desc = "Buffers",
-      },
-      {
-        "\\q", [[<cmd>:Telescope aerial<CR>]], desc = "LSP Symbols",
-      },
+      { "<leader>/", false },
+      { "\\r",       [[<cmd>lua vim.lsp.buf.rename()<cr>]], desc = "LSP Rename" },
+      { "\\2",       [[<cmd>:Telescope buffers<CR>]],       desc = "Buffers", },
+      { "\\q",       [[<cmd>:Telescope aerial<CR>]],        desc = "LSP Symbols", },
       {
         "\\s",
         function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ") }) end,
