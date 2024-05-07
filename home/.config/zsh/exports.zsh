@@ -2,18 +2,14 @@
 # HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=1000000
 SAVEHIST=1000000
-GOVER=go1.19
 export EDITOR=nvim
-export PATH=$PATH:$HOME/bin:/usr/local/bin:$USER/.local/bin:$HOME/.local/golang/$GOVER/bin
-export PATH="/opt/homebrew/opt/go@1.19/bin:$PATH"
+export PATH=$PATH:$HOME/bin:$USER/.local/bin:/usr/local/bin
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
 export GOPATH=$HOME/go
 export PKG_CONFIG_PATH=/usr/local/opt/sqlite/lib/pkgconfig
-# eval "$(zoxide init zsh)"
-# eval "`pip completion --zsh`"
 export CLICOLOR=1
 
 # export LSCOLORS=gxFxCxDxBxegedabagaced

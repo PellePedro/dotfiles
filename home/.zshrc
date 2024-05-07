@@ -9,6 +9,7 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "$HOME/.config/zsh/aliases.zsh"
 plug "$HOME/.config/zsh/exports.zsh"
 plug "$HOME/.config/zsh/functions.zsh"
+plug "$HOME/.config/zsh/zoxide-functions.zsh"
 
 
 if command -v fzf &> /dev/null; then
@@ -27,11 +28,7 @@ if command -v fzf &> /dev/null; then
 fi
 
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 OS=$(uname -s)
-
 case "$OS" in
   Linux)
       ;;
