@@ -34,7 +34,6 @@ OS=$(uname -s)
 
 case "$OS" in
   Linux)
-      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 
       ;;
   Darwin)
       ;;
@@ -44,3 +43,4 @@ case "$OS" in
 esac
 
 eval "$(atuin init zsh)"
+eval "$(zoxide init zsh)"
