@@ -167,6 +167,7 @@ return {
     local new_maps = {
       -- first key is the mode
       n = {
+        ["<Leader>\\"] = { "<Cmd>vsplit<CR>", desc = "Vertical Split" },
         -- Git
         dp = {
           function()
