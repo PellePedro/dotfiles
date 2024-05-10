@@ -1,0 +1,70 @@
+#!/bin/zsh
+
+# Usage function to display help
+usage() {
+    echo "Usage: $0 --mode [dir|git] --base <base> --target <target>"
+    echo "    --mode   'dir' to compare directories, 'git' to compare git branches"
+    echo "    --base   base directory or git branch"
+    echo "    --target target directory or git branch"
+    exit 1
+}
+
+# Parse command line options
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --mode) mode="$2"; shift ;;
+        --base) base="$2"; shift ;;
+        --target) target="$2"; shift ;;
+        *) usage ;;
+    esac
+    shift
+done
+
+# Check required parameters
+if [[ -z "$mode" || -z "$base" || -z "$target" ]]; then
+    usage
+fi
+
+# Function to list changed files for directories
+list_changed_files_dir() {
+    diff -qr "$base" "$target" | grep -v 'Only in' | awk -F': ' '{ print $2 }' | awk '{ print $2 " " $4 }'
+}
+
+# Function to list changed files for git branches
+list_changed_files_git() {
+    git diff --name-only "$base" "$target" | while read file; do
+        echo "$file $file"
+    done
+}
+
+# Determine function based on mode
+if [[ "$mode" == "dir" ]]; then
+    if [ ! -d "$base" ] || [ ! -d "$target" ]; then
+        echo "Both base and target must be directories."
+        exit 1
+    fi
+    changed_files=$(list_changed_files_dir)
+elif [[ "$mode" == "git" ]]; then
+    # Verify if inside a git repository
+    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        echo "Not inside a Git repository."
+        exit 1
+    fi
+    changed_files=$(list_changed_files_git)
+else
+    usage
+fi
+
+# Use fzf to select files
+selected_files=$(echo "$changed_files" | fzf -m --height 40% --border --preview "echo {} | awk '{print \"File 1: \" \$1, \"\nFile 2: \" \$2}'" | awk '{print $1, $2}')
+
+# Open selected files in neovim diff mode
+if [ -n "$selected_files" ]; then
+    echo "$selected_files" | while read -r file1 file2; do
+        nvim -d "$file1" "$file2"
+    done
+else
+    echo "No files selected or no differences found."
+    exit 0
+fi
+
