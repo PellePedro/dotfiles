@@ -6,6 +6,8 @@ dry_run=false
 while getopts 'd' opt; do
     case "$opt" in
         n) dry_run=true ;;
+        d) stow -t $HOME -v -D home
+           exit 0 ;;
         *) echo 'error in command line parsing' >&2
            exit 1
     esac
