@@ -85,7 +85,7 @@ return {
         ["<C-s>"] = false,
         ["<C-q>"] = false,
         -- ["|"] = false,
-        -- ["\\"] = false,
+        ["\\"] = false, -- Disable default h split
 
 
         -- ["<Leader>bc"] = false,
