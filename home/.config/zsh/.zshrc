@@ -35,6 +35,16 @@ case "$OS" in
     ;;
 esac
 
+# autin
 eval "$(atuin init zsh)"
+# zoxide
+
 eval "$(zoxide init zsh)"
+# ssh agent
+eval "$(ssh-agent -s)"
+if [ -f ~/.ssh/id_rsa ]; then
+    ssh-add ~/.ssh/id_rsa
+fi
+
+
 source "$HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
