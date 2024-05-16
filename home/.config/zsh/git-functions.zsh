@@ -27,6 +27,16 @@ function makeall() {
     make package-pip
     make pip-install
     export SHA=$(git rev-parse --short HEAD)
+    popd
+}
+
+function testpip() {
+    rmcluster
+    makeall
+    pushd $SKYRAMP_HOME
+    export SHA=$(git rev-parse --short HEAD)
+    make test-pip
+    popd
 }
 
 function zocat() {
@@ -38,5 +48,10 @@ function zocat() {
 
 function zdelns() {
     NS=$(kubectl get ns | awk '{print $1}' | fzf)
+    kubectl delete ns $NS
+}
+
+function zdelns() {
+    image=$(kubectl get ns | awk '{print $1}' | fzf)
     kubectl delete ns $NS
 }
