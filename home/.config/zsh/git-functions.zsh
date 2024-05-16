@@ -55,3 +55,17 @@ function zdelns() {
     image=$(kubectl get ns | awk '{print $1}' | fzf)
     kubectl delete ns $NS
 }
+
+function installgo() {
+    version=$1
+    go install golang.org/dl/go$version@latest
+    go$version download
+}
+
+function setgo() {
+    version=$1
+    GOROOT=$(go$version env GOROOT)
+    export PATH=$GOROOT/bin:$PATH
+    GOPATH=$(go$version env GOPATH)
+    export GOPATH
+}
