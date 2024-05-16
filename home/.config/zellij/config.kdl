@@ -3,6 +3,7 @@ keybinds {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
+         bind "Alt l" { Clear; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -36,6 +37,7 @@ keybinds {
         bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
+        bind "Alt l" { Clear; }
     }
     move {
         bind "Ctrl h" { SwitchToMode "Normal"; }
