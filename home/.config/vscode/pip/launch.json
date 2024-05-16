@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Set Git Commit Hash",
+            "env": {
+                "SHA": "${command:readGitCommitHash}",
+                "SKYRAMP_DEBUG" : "true"
+            },
+        },
+        {
+            "name": "Debug Python: Pytest",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "${workspaceFolder}/test_skyramp.py",
+                "--maxfail=1",
+                "--disable-warnings"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "preLaunchTask": "Set Git Commit Hash",
+            "env": {
+                "SHA": "${command:readGitCommitHash}",
+                "PYTHONPATH": "${workspaceFolder}"
+                "SKYRAMP_DEBUG" : "true"
+            }
+        }
+    ]
+}
