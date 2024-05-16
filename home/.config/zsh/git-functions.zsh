@@ -5,13 +5,18 @@ function sha() {
     echo "SHA is : $SHA"
 }
 
-function rmsky() {
-    pushd $SKYRAMP_HOME
+function rmcluster() {
     docker ps | grep worker | awk '{print $1}' | xargs -I{} docker rm {} --force
     docker ps | grep public.ecr | awk '{print $1}' | xargs -I{} docker rm {} --force
-    ~/git/letsramp/skyramp/bin/skyramp cluster remove -l || true
+    ${SKYRAMP_HOME}/bin/skyramp cluster remove -l || true
     rm -f ~/.kube/config || true
-    popd 
+}
+
+function newcluster() {
+    rmcluster
+    ${SKYRAMP_HOME}/bin/skyramp cluster create -l || true
+    cp ~/.skyramp/kind-cluster.kubeconfig ~/.kube/config
+    rm -f ~/.kube/config || true
 }
 
 function makeall() {
