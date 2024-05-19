@@ -6,6 +6,7 @@ source "$ZDOTDIR/exports.zsh"
 source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/zoxide-functions.zsh"
 source "$ZDOTDIR/git-functions.zsh"
+source "$ZDOTDIR/zellij-functions.zsh"
 source "$ZDOTDIR/prompt.zsh"
 
 

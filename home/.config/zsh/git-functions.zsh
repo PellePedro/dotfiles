@@ -20,6 +20,7 @@ function newcluster() {
 }
 
 function makeall() {
+    setgo 1.19.4
     pushd $SKYRAMP_HOME
     make all
     make build-worker
@@ -68,4 +69,14 @@ function setgo() {
     export PATH=$GOROOT/bin:$PATH
     GOPATH=$(go$version env GOPATH)
     export GOPATH
+}
+
+function prune() {
+    sudo docker system prune -a
+}
+
+function syncso() {
+    dest=~/git/letsramp/skyramp/libs/pip/src/skyramp/lib/
+    rm -rf $dest/*
+    rsync -av ~/git/letsramp/skyramp/bin/github.com/letsramp/* $dest
 }
