@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  openvscode1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-openvscode-server:latest
+    ports:
+      - "8000:3000"
+    volumes:
+      - ./data/user1:/home/workspace
+    entrypoint: 
+      - "/bin/sh" 
+      - "-c"
+      - "exec /home/.openvscode-server/bin/openvscode-server --host 0.0.0.0 --connection-token \"$USERTOKEN1\""
+
