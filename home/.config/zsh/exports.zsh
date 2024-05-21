@@ -28,6 +28,7 @@ export NNN_BMS
 
 # NNN Plugins
 NNN_PLUG="e:-!sudo -E nvim $nnn*;"
+NNN_PLUG="n:-!nvim;"
 NNN_PLUG="g:!lazygit;$NNN_PLUG"
 NNN_PLUG="j:autojump;$NNN_PLUG"
 NNN_PLUG="r:renamer;$NNN_PLUG"
