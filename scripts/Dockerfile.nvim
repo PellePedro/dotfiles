@@ -1,7 +1,6 @@
 FROM debian:bullseye as builder
 
-# ARG NVIM_RELEASE=release-0.9
-ARG NVIM_RELEASE=master
+ARG NVIM_RELEASE=release-0.10
 
 ENV DEBIAN_FRONTEND=noninteractive
 
