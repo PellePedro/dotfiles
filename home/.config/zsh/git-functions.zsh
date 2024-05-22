@@ -89,7 +89,7 @@ function zapns() {
     "eks-test"
     "grpc-checkout-test"
     "grpc-test"
-    "rest-test
+    "rest-test"
     "kube-node-lease"
     "rafay-test"
     "rbac"
