@@ -32,6 +32,8 @@ paru -Syu \
     fzf \
     ripgrep \
     git-delta \
-    btop
+    btop \
+    netctl \
+    openvswitch
 
 
