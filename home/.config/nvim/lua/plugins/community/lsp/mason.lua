@@ -41,6 +41,10 @@ return {
         "tsserver",
         "eslint_d",
         "codespell",
+        "goimports",
+        "goimports-reviser",
+        "gofmt",
+        "gofumpt",
         "golangci_lint",
         "staticcheck",
       })
