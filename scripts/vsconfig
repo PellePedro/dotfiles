@@ -1,0 +1,39 @@
+#!/bin/bash
+set -e
+
+usage() {
+  echo "Usage: $0 {pull|push}"
+  echo "  pull  - Sync from mono repo to shadow directory"
+  echo "  push  - Sync from shadow directory to mono repo"
+  exit 1
+}
+
+config_repo_path=$HOME/git/letsramp/config
+
+remote_repos=(
+vscode:/home/ubuntu/git/letsramp/skyramp
+rachzucco:/home/pedro/git/letsramp/skyramp
+imac:/Users/pedro/git/letsramp/skyramp
+mbp:/Users/pedro/git/letsramp/skyramp
+)
+       
+# Check if exactly one argument is provided
+if [ "$#" -ne 1 ]; then
+  usage
+fi
+
+remote_repo=$(printf "%s\n" "${remote_repos[@]}" | fzf --prompt="Sync config to Skyramp repo" --height=50% --layout=reverse --border --exit-0)
+# Perform the requested operation
+case "$1" in
+  pull)
+    rsync -avm --include='*/' --include='.vscode/***' --exclude='*' -e ssh "$remote_repo/" "$config_repo_path/"
+    echo "Pull complete."
+    ;;
+  push)
+    rsync -avm --include='*/' --include='.vscode/***' --exclude='*' -e ssh "$config_repo_path/" "$remote_repo/"
+    echo "Push complete."
+    ;;
+  *)
+    usage
+    ;;
+esac
