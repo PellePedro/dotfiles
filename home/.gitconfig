@@ -41,3 +41,5 @@
     reflog = delta
     show = delta
 
+[alias]
+	short-sha = rev-parse --short HEAD
