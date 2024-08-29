@@ -114,13 +114,18 @@ function zapns() {
     "eks-test"
     "grpc-checkout-test"
     "grpc-test"
-    "rest-test"
     "kube-node-lease"
     "rafay-test"
     "rbac"
     "rest-checkout-test"
+    "rest-test"
     "rest-test-with-no-openapi"
+    "skyramp-client-grpc-helloworld"
+    "skyramp-client-mongo-default"
+    "skyramp-client-rest-demo"
+    "test-grpc-demo"
     "test-rafay"
+    "test-rest-demo"
   )
 
   # Iterate over the array and delete each namespace with --force
