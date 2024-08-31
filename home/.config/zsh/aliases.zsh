@@ -3,6 +3,7 @@ alias vi='nvim'
 alias x='exit'
 alias f='zi'
 alias g='lazygit'
+alias r=$HOME/git/letsramp/skyramp/.vscode/scripts/run-action.sh
 
 alias ze="zellij -l ~/.config/zellij/layout.kdl attach dev --create"
 alias zek="zellij kill-all-sessions"
@@ -15,11 +16,6 @@ alias nc="nnn ~/.config/zsh"
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-
-# confirm before overwriting something
-alias cp="cp -i"
-alias mv='mv -i'
-alias rm='rm -i'
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 set -x
-GO_VERSION="1.22.6"
+GO_VERSION="1.23.0"
+# GO_VERSION="1.22.6"
 GOPLS_VERSION=“latest”
 STATIC_CHECK_VERSION=“2023.1.2”
 GOLANGCI_VERSION=“v1.50.0”
@@ -18,10 +19,10 @@ if [ -d "/usr/local/go" ]; then
 fi
 
 curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz
-sudo tar -C /usr/local -xzf golang.tar.gz
+tar -C /usr/local -xzf golang.tar.gz
 rm golang.tar.gz
-sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
-sudo rm -rf ${GOLANG_TAR}
+ln -sf /usr/local/go/bin/go /usr/local/bin/go
+rm -rf ${GOLANG_TAR}
 
 
 go install github.com/jesseduffield/lazygit@latest
@@ -40,4 +41,18 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 
 go install golang.org/x/tools/gopls@”$GOPLS_VERSION”
 
+go_versions=(
+go1.19.2
+go1.22.6
+)
+
+selected_version=$(printf "%s\n" "${go_versions[@]}" | fzf)
+
+LOGFILE="$SKYRAMPDIR/logfile.log"
+
+for version in "${go_versions[@]}"; do
+    if [ "$version" == "$selected_version" ]; then
+        install_go $version
+    fi
+done
 
