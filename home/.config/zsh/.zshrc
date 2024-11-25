@@ -25,6 +25,11 @@ if command -v fzf &> /dev/null; then
     fi
 fi
 
+if [ -d "/opt/homebrew/bin" ]; then
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+elif [ -d "/usr/local/bin" ]; then
+  export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+fi
 
 OS=$(uname -s)
 case "$OS" in
